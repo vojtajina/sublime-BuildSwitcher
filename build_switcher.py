@@ -34,8 +34,13 @@ class BuildSwitcherCommand(WindowCommand):
         # the dialog was cancelled
         if idx is -1: return
 
-        self.window.run_command("set_build_system", {"file": self.available_systems[idx]})
-        self.window.run_command("build")
+        system = self.available_systems[idx].partition("#")
+
+        self.window.run_command("set_build_system", {"file": system[0]})
+        if system[1]:
+            self.window.run_command("build", {"variant": system[2]})
+        else:
+            self.window.run_command("build")
 
         # move the last used system to first position
         self.available_systems.insert(0, self.available_systems.pop(idx))
