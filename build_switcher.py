@@ -6,11 +6,6 @@ class BuildSwitcherCommand(WindowCommand):
     def __init__(self, window):
         WindowCommand.__init__(self, window)
 
-        settings = self.window.active_view().settings()
-        settings.add_on_change("build_switcher_systems", self._reload_settings)
-        self._reload_settings()
-
-
     def _reload_settings(self):
         settings = self.window.active_view().settings()
         self.available_systems = settings.get("build_switcher_systems")
@@ -18,6 +13,10 @@ class BuildSwitcherCommand(WindowCommand):
 
     def run(self):
         win = self.window
+
+        settings = self.window.active_view().settings()
+        settings.add_on_change("build_switcher_systems", self._reload_settings)
+        self._reload_settings()
 
         if not self.available_systems:
             # no switcher builds - just do selected build
