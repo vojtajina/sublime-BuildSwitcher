@@ -15,7 +15,7 @@ There is currently no way to get list of available build systems in [Sublime], s
     "settings": {
         "build_switcher_systems": [
             "Unit tests",
-            "CoffeeScript"
+            "CoffeeScript",
             ["My unit tests", "c:\\builds\\UI_tests.sublime-build"],
             ["My CoffeeScript", "/Users/me/build/coffee.sublime-build"]
         ]
